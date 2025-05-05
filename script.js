@@ -141,8 +141,6 @@ async function redditStock(){
   
         comments.innerHTML = stock.no_of_comments;
         tick.innerHTML = stock.ticker;
-        sentiment.innerHTML = stock.sentiment;
-        
         const url = document.createElement('a');
         url.href = `https://finance.yahoo.com/quote/${tick.innerHTML}/`
         url.textContent = tick.innerHTML;
@@ -168,3 +166,89 @@ async function redditStock(){
           stkTable.append(row);
       })
     }
+
+async function dogImage() {
+    let f = "";
+    return fetch(`https://dog.ceo/api/breeds/image/random`)
+    .then(response => response.json())
+    .then(data => {
+        f= data.message;
+        return f
+    })
+
+
+}
+
+async function populateDog() {
+    document.getElementById("dogSlide");
+    for(i=0; i < 10; i++){
+        const apiResponse = await dogImage();
+        const result = apiResponse;
+        let c = document.getElementById(`pic${i}`)
+        c.src = result;
+        console.log(c.src)
+        c.width = 500;
+        c.height = 500;
+        dogSlide.appendChild(c)
+    }
+}
+
+async function dogInfo() {
+    return fetch("https://dogapi.dog/api/v2/breeds")
+    .then(r => r.json())
+    .then(d => {
+        console.log(d.data)
+        return d.data
+    })
+}
+
+async function popButton() {
+    document.getElementById("info");
+    const apiResponse = await dogInfo();
+    const result = await apiResponse;
+    console.log(result[0].attributes)
+    
+    for (i = 0; i<10; i++){
+        const b = document.createElement("button")
+        b.textContent = result[i].attributes.name;
+        b.className = "button-33"
+        b.setAttribute("textContent", result[i].attributes.name)
+        console.log(b.textContent)
+        console.log()
+
+        b.addEventListener("click", function (){
+            populateDiv(b.textContent);
+        });
+
+        dogbtns.append(b)
+    }
+}
+
+async function populateDiv(name){
+    const apiResponse = await dogInfo();
+    const result = await apiResponse;
+    document.getElementById("info");
+    const d = document.createElement("div")
+    d.style.border = "solid black 2px";
+    d.style.backgroundColor = "white";
+    info.innerHTML = "";
+
+    result.forEach(breed => {
+        if(breed.attributes.name === name){
+         
+          d.innerHTML = `
+          <h2>Name: ${breed.attributes.name}</h2>
+          <h3> Description: ${breed.attributes.description}
+          <h3> Min Life: ${breed.attributes.life.min} <h3>
+          <h3> Max Life: ${breed.attributes.life.max} <h3>
+          `
+          info.append(d)
+        }
+      })
+    }
+
+    async function dogFunc() {
+        await popButton();
+        await simpleslider.getSlider();
+        await populateDog();
+      }

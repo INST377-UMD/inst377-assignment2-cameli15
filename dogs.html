@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title>Dogs</title>
+    <script src="script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-slider/1.0.0/simpleslider.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body onload = "dogFunc()">
+    <h1>INST377 - Activities</h1>
+    <nav class="naviClass">
+      <ul>
+        <li onclick="window.location.href='home.html';">Home</li>
+        <li onclick="window.location.href='stocks.html';">Stocks</li>
+        <li onclick="window.location.href='dogs.html';">Dogs</li>
+      </ul>
+    </nav>
+
+    <h1>Doggos!</h1>
+    <div id="dogSlide" data-simple-slider>
+      <img id = "pic0" />
+      <img id = "pic1" />
+      <img id = "pic2" />
+      <img id = "pic3" />
+      <img id = "pic4" />
+      <img id = "pic5" />
+      <img id = "pic6" />
+      <img id = "pic7" />
+      <img id = "pic8" />
+      <img id = "pic9" />
+    </div>
+
+    <div id="dogbtns"></div>
+    <div id="info"></div>
+
+</form>
+    <div id="audioCSS" style="margin-top: 90px">
+      <h3 style="text-align: center">
+        You can navigate on this webpage using audio!
+      </h3>
+      <p style="text-align: center">
+        *Ensure your Mic is enabled to use this feature*
+      </p>
+      <ul>
+        <li>
+          Navigate to a different page
+          <ul>
+            <li>Say: <b>Navigate to &lt;page&gt;</b></li>
+          </ul>
+        </li>
+        <li>
+          Change the page color
+          <ul>
+            <li>Say: <b>Change the color to &lt;color&gt;</b></li>
+          </ul>
+        </li>
+        <li>
+          Say Hello!
+          <ul>
+            <li>Say: <b>Hello</b></li>
+          </ul>
+        </li>
+      </ul>
+      <div id="audioBtns">
+        <button onclick="stop()">Turn Off Audio</button>
+        <button onclick="start()">Turn On Audio</button>
+      </div>
+    </div>
+  </body>
+</html>
